@@ -22,12 +22,22 @@ def wrap(Aantalperrol, formaat_hoogte):
 
 class WrapAround:
 
+
     def __init__(self, amount_per_roll, height, core=76):
         material = 145
 
         self.amount_per_roll = amount_per_roll
         self.core = core
         self.height = height
+
+    def wikkel(self, amount_per_rol=100, height=10):
+        pi = math.pi
+        # kern = 76  # global andere is 40 en 25
+        # materiaal = 145  # global var_1
+        var_1 = int(math.sqrt((4 / pi) * ((amount_per_rol * height) / 1000) * MATERIAL + pow(CORE_LARGE, 2)))
+        wikkel = int(2 * pi * (var_1 / 2) / height + 2)
+        return wikkel
+
 
 
 class NoWrapAround(WrapAround):
@@ -41,6 +51,8 @@ noop = NoWrapAround(100, 25, 100)
 yep = WrapAround(100, 76, 40)
 
 print(f'apr = {yep.amount_per_roll}')
+print(f'wikkel = {yep.wikkel(100, 10)}')
+print(f'wikkel = {type(yep.wikkel(500, 80))}')
 
 #     self._core = [76, 40, 25, ]
 #
@@ -60,3 +72,4 @@ print(f'apr = {yep.amount_per_roll}')
 # def around(self):
 #     """boolean"""
 #     pass
+print(wrap(500, 80))

@@ -1,6 +1,6 @@
 
-
 import PySimpleGUI as sg
+from main.paden import *
 
 
 
@@ -90,6 +90,10 @@ while True:
         mes = int(values["mes"])
 
         inloop = Y_waarde * 10 - Y_waarde
+
+        testen_van_dirmaker = DirMaker("a","mike","test",10)
+        testen_van_dirmaker.paden_maker("test")
+
 
 
 

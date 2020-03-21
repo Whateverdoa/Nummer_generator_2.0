@@ -3,7 +3,13 @@
  Simple and working is what i strive for. I will comment as much as possible (also with variable names.
  """
 import pandas as pd
+import math
 
+CORE_LARGE = 76
+CORE_SMALL = 40
+CORE_TINY = 25
+
+MATERIAL = 145
 
 
 
@@ -12,7 +18,7 @@ class Roll():
     """"all things that are needed to build a roll, be it with numbers or with images"""
 
     # init method or constructor
-    def __init__(self, order_number, begin_nummer, posities, vlg0, aantal_per_rol, hoogte, wikkel):
+    def __init__(self, order_number, begin_nummer, posities, vlg0, aantal_per_rol, hoogte):
 
         self.order_number = order_number
         self.begin_nummer = begin_nummer
@@ -20,17 +26,14 @@ class Roll():
         self.aantal_per_rol = aantal_per_rol
         self.vlg0 = vlg0
         self.hoogte = hoogte
-        self.wikkel = wikkel
+
 
 
     def one(order_number):
             ''''initial test file'''
             return order_number
 
-    def voorloop_wikkel(wikkel):
-        ''''wikkel formule --> int'''
 
-        return wikkel
 
 
 class Number(Roll):
@@ -42,8 +45,8 @@ class Number(Roll):
         self.stap = stap
 
     def nummer_vlg(self):
-        begin_nummer
-        
+        pass
+
 
 class Checking_results():
     """"probably  belongs with pytest"""
@@ -60,3 +63,25 @@ class Output():
     pass
 
 
+class InloopUitloop:
+
+    def __init__(self, amount_per_roll, height, core=76):
+        material = 145
+
+        self.amount_per_roll = amount_per_roll
+        self.core = core
+        self.height = height
+
+    def wikkel(self, amount_per_rol=100, height=10):
+        pi = math.pi
+        # kern = 76  # global andere is 40 en 25
+        # materiaal = 145  # global var_1
+        var_1 = int(math.sqrt((4 / pi) * ((amount_per_rol * height) / 1000) * MATERIAL + pow(CORE_LARGE, 2)))
+        wikkel = int(2 * pi * (var_1 / 2) / height + 2)
+        return wikkel
+
+
+
+
+a = InloopUitloop(1,1)
+print(a.wikkel(100,100))
