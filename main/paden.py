@@ -6,35 +6,14 @@ from pathlib import Path
 dir_names_lijst = ["summary", "tmp", "VDP_final", "VDP_map"]
 pad_naam_lijst = ["pad_sum", "pad_tmp","pad_VDP_final", "pad_VDP_map"]
 
-paden_dict = dict(zip(pad_naam_lijst, dir_names_lijst))
-
-for naam in paden_dict.keys():
-    print(naam)
 
 
 wdir = Path.cwd()
 
-# pad_summary = wdir / "summary/"
-# file = "VDP_map"
-# print(pad_summary.is_dir())
-#
-# path_vdp = wdir / file
-# path_final =  wdir / "VDP_final"
-# path = wdir / "tmp"
-
-# print(path_vdp)
-# print(path_final)
-
-# def paden_maker(dirname):
-#     """"maak dirs"""
-#     path = Path(wdir / dirname)
-#     print(path)
-#     return path.mkdir(parents=True, exist_ok=True)
-
 
 class DirMaker():
     """all path making and deleting features"""
-    def __init__(self, padname, filename, dirname, amount_of_rolls):
+    def __init__(self, padname, filename, dirname, amount_of_rolls=1):
 
         self.padname = padname
         self.filename = filename
@@ -42,7 +21,7 @@ class DirMaker():
         self.amount_of_rolls = amount_of_rolls
 
     def paden_maker(self, dirname):
-        """"maak dirs"""
+        """plots paths"""
         wdir = Path.cwd()
         path = Path(wdir / dirname)
         print(path)
@@ -60,11 +39,18 @@ class DirMaker():
 
         return man_fac_name_lijst
 
-    def directory_maker(paden_maker):
-        pass
+
+#building the directories
+#putting the paths in a dictonairy
+
+padenlijst=[]
+for dirnames in dir_names_lijst:
+    DirMaker(wdir,"test", dirnames).paden_maker(dirnames).mkdir(parents=True, exist_ok=True)
+    padenlijst.append(DirMaker(wdir, "test", dirnames).paden_maker(dirnames))
+
+paden_dict = dict(zip(pad_naam_lijst, padenlijst))
 
 
-class FilenameMaker():
-    pass
+
 
 

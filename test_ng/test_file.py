@@ -45,3 +45,12 @@ def test_paden_maker():
     temakenpad = panaamtester.paden_maker("padnaam")
     # ga testen of het directories maakt op de juiste plek
     assert temakenpad == expected
+
+def test_paden_maker_exists():
+    expected = True
+    panaamtester = DirMaker("pad","fn","dirn",10)
+    temakenpad = panaamtester.paden_maker("padnaam").mkdir(parents=True, exist_ok=True)
+    temakenpad = panaamtester.paden_maker("padnaam").is_dir()
+    # ga testen of het directories maakt op de juiste plek
+    assert temakenpad == expected
+
